@@ -2,16 +2,20 @@ import { useState } from 'react';
 import styles from './index.module.css';
 
 function HoverableText({ text }) {
-  return (
-    <>
-      {text.split("").map((char, index) => (
+    const chars = text.split("").map((char, index) => {
+      if (char === ' ') {
+        return <span key={index}>&nbsp;</span>;
+      }
+      return (
         <span key={index} className={styles.hoverableLetter}>
           {char}
         </span>
-      ))}
-    </>
-  );
-}
+      );
+    });
+  
+    return <>{chars}</>;
+  }
+  
 
 export default function Home() {
   const [hovered, setHovered] = useState(false);
