@@ -1,45 +1,25 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useState } from 'react';
+import styles from './index.module.css';
 
 export default function Home() {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <div className={styles.container}>
-      <Head>
-        <title>80's Neon Synth Vibes</title>
-        <meta name="description" content="A funky 80's synth vibe with neon elements" />
-        <link rel="icon" href="/favicon.ico" />
-        <style jsx global>{`
-          body {
-            background-color: #2b2b2b;
-            font-family: 'Arial', sans-serif;
-          }
-          .neon-text {
-            font-size: 3em;
-            color: #fff;
-            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff0000, 0 0 20px #ff0000, 0 0 25px #ff0000, 0 0 30px #ff0000, 0 0 35px #ff0000;
-            animation: blink 1.5s infinite;
-          }
-          @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-          }
-        `}</style>
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className="neon-text">
-          Welcome to the 80's!
-        </h1>
-
-        <p className={styles.description}>
-          Dive into the world of neon lights and synth vibes.
-        </p>
+      <header
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        className={hovered ? styles.headerHovered : styles.header}
+      >
+        Welcome to SynthWave '84
+      </header>
+      <main className={styles.mainContent}>
+        <p>Did you know that keyboards in the '80s had a mind of their own? 🎹✨</p>
+        <p>Stay awhile and enjoy the neon glow!</p>
       </main>
-
       <footer className={styles.footer}>
-        <p>Powered by Next.js and 80's Neon Vibes</p>
+        Made with love and a pinch of neon.
       </footer>
     </div>
-  )
+  );
 }
